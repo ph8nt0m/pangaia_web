@@ -3,18 +3,29 @@ import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
-  const deeplink = "pangaia:/" + window.location.pathname;
+  console.log("location >>> ", window.location);
+  console.log("location.search >>> ", window.location.search);
+
+  const params = new URLSearchParams(window.location.search);
+
+  let url = params.get("url");
+
+  console.log("params.get('url') >>> ", url);
+
+  const deeplink = "pangaia://" + url;
+  console.log("deeplink", deeplink);
   useEffect(() => {
     window.open(deeplink, "_blank");
   }, [deeplink]);
   return (
     <div className="App">
+      <p>{deeplink}</p>
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <a href="deeplink">{deeplink}</a>
+        <a href={deeplink}>{deeplink}</a>
         <a
           className="App-link"
           href="https://reactjs.org"

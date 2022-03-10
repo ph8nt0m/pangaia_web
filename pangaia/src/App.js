@@ -1,28 +1,37 @@
-import React, { useEffect } from "react";
-// import logo from "./logo.svg";
+import React from "react";
+import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
-  const deeplink = "pangaia:/" + window.location.pathname;
-  useEffect(() => {
-    window.open(deeplink, "_blank");
-  }, [deeplink]);
+  // const deeplink = "pangaia:/" + window.location.pathname;
+
+  console.log("location >>> ", location);
+  console.log("location.search >>> ", location.search);
+
+  const params = new URLSearchParams(location.search);
+
+  let name = params.get("name");
+
+  console.log("params.get('name') >>> ", name);
+  // useEffect(() => {
+  //   window.open(deeplink, "_blank");
+  // }, [deeplink]);
   return (
     <div className="App">
       <header className="App-header">
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
-        {/* <p>
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
           Edit <code>src/App.js</code> and save to reload.
-        </p> */}
+        </p>
         <a href={deeplink}>{deeplink}</a>
-        {/* <a
+        <a
           className="App-link"
           href="https://reactjs.org"
           target="_blank"
           rel="noopener noreferrer"
         >
           Learn React
-        </a> */}
+        </a>
       </header>
     </div>
   );
